@@ -1,0 +1,26 @@
+插件针对的是 vscode npm 包针对的是项目的
+"useTabs": false, 使用 tab 缩进还是空格
+"tabWidth": 2, tab 等于多少的空格
+"printWidth": 80, 字符长度
+"singleQuote": true, 单引号还是双引号
+"trailingComma": "none", 在多行输入尾号是否加入逗号
+"semi": false 语句末尾是否加分号
+1 解决 eslint 和 prettier 之间的冲突
+需要配置文件配置使用的规则 plugin:prettier/recommended
+
+git 代码规范配置
+代码格式
+1 npx husky-init && npm install 安装并生成配置文件
+2 在pre-commit设置npm run lint命令，提交后执行lint fix
+
+使用git cz来提交代码
+也可以使用commitizen依赖包 使用git cz来commit代码
+
+使用commitlint 来限制 git commit命令提交
+1 npm i @commitlint/config-conventional @commitlint/cli -D
+2 配置commitlint.config.js文件
+3 配置git husky拦截 commit message的消息
+
+
+撤销commit --hard(删除工作空间)
+git reset --soft HEAD^
