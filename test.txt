@@ -8,18 +8,24 @@
 1 解决 eslint 和 prettier 之间的冲突
 需要配置文件配置使用的规则 plugin:prettier/recommended
 
-git 代码规范配置
+
+
+
+git 代码规范配置(git husky和commitlint和commitizen)
+
 代码格式
 1 npx husky-init && npm install 安装并生成配置文件
-2 在pre-commit设置npm run lint命令，提交后执行lint fix
+2 配置pre-commit文件，配置命令对代码提交前进行lint fix
 
-使用git cz来提交代码
-也可以使用commitizen依赖包 使用git cz来commit代码
+使用commitizen依赖包 使用git cz来commit代码
+1 npm install commitizen -D
+2 npx commitizen init cz-conventional-changelog --save --save-exact
+3 使用npx cz来提交代码
 
 使用commitlint 来限制 git commit命令提交
 1 npm i @commitlint/config-conventional @commitlint/cli -D
-2 配置commitlint.config.js文件
-3 配置git husky拦截 commit message的消息
+2 配置commitlint.config.js文件 配置commit使用的规则
+3 配置husky commit-msg文件来对git commit进行拦截
 
 
 撤销commit --hard(删除工作空间)
