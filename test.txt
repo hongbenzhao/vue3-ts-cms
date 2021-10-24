@@ -30,3 +30,8 @@ git 代码规范配置(git husky和commitlint和commitizen)
 
 撤销commit --hard(删除工作空间)
 git reset --soft HEAD^
+解决npm版本过高引起的依赖冲突
+npm install  xxx --legacy-peer-deps
+npm install xxx -- force
+
+npx -p npm@6 npm i --legacy-peer-deps
