@@ -9,8 +9,6 @@
 需要配置文件配置使用的规则 plugin:prettier/recommended
 
 
-
-
 git 代码规范配置(git husky和commitlint和commitizen)
 
 代码格式
@@ -35,3 +33,5 @@ npm install  xxx --legacy-peer-deps
 npm install xxx -- force
 
 npx -p npm@6 npm i --legacy-peer-deps
+
+npm i normalize.css

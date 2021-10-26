@@ -4,11 +4,16 @@ import router from './router'
 import store from './store'
 import { globalRegister } from './global'
 import hbRequest from './service'
+import 'normalize.css'
+import './assets/css/index.less'
+import { setupStore } from '@/store'
+
 const app = createApp(App)
 
 app.use(globalRegister)
 // registerApp(app)
 app.use(store).use(router)
+setupStore()
 app.mount('#app')
 
 // hbRequest.request({

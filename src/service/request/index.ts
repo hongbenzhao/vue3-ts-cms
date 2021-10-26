@@ -29,7 +29,7 @@ class HBRequest {
     // 2 全局所有实例都有的拦截器 后进先出
     this.instance.interceptors.request.use(
       (config) => {
-        console.log('所有实例都有请求的拦截器')
+        // console.log('所有实例都有请求的拦截器')
         if (this.showLoading) {
           this.loading = ElLoading.service({
             lock: true,
@@ -45,7 +45,7 @@ class HBRequest {
     )
     this.instance.interceptors.response.use(
       (res) => {
-        console.log('所有实例都有响应的拦截器')
+        // console.log('所有实例都有响应的拦截器')
         setTimeout(() => {
           this.loading?.close()
         }, 1000)
