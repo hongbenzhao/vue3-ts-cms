@@ -39,3 +39,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 git 代码规范配置
 npx husky-init && npm install 安装并生成配置文件
+
+使用 coderwhy 插件快速创建文件夹及对应路由路径
+coderwhy add3page user -d src/views/main/system/user

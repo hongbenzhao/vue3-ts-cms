@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import { globalRegister } from './global'
-import hbRequest from './service'
+// import hbRequest from './service'
 import 'normalize.css'
 import './assets/css/index.less'
 import { setupStore } from '@/store'
@@ -30,11 +30,11 @@ app.mount('#app')
 //     }
 //   }
 // })
-interface DateType {
-  data: any
-  returnCode: string
-  success: boolean
-}
+// interface DateType {
+//   data: any
+//   returnCode: string
+//   success: boolean
+// }
 
 // hbRequest
 //   .request<DateType>({
