@@ -1,5 +1,6 @@
 import hbRequest from '../index'
-import { IAccount, IDataType } from './type'
+import { IAccount } from './type'
+import { IDataType } from '../types'
 
 enum LoginAPI {
   AccountLogin = '/login',

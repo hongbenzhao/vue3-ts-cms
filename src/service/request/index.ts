@@ -66,7 +66,7 @@ class HBRequest {
       }
     )
   }
-  request<T>(config: HBRequestConfig<T>): Promise<T> {
+  request<T = any>(config: HBRequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       if (config.interceptors?.requestInterceptors) {
         config = config.interceptors.requestInterceptors(config)
@@ -89,16 +89,16 @@ class HBRequest {
         })
     })
   }
-  get<T>(config: HBRequestConfig<T>): Promise<T> {
+  get<T = any>(config: HBRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'get' })
   }
-  post<T>(config: HBRequestConfig<T>): Promise<T> {
+  post<T = any>(config: HBRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'post' })
   }
-  delete<T>(config: HBRequestConfig<T>): Promise<T> {
+  delete<T = any>(config: HBRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'delete' })
   }
-  patch<T>(config: HBRequestConfig<T>): Promise<T> {
+  patch<T = any>(config: HBRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'patch' })
   }
 }
