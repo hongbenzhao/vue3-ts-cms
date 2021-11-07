@@ -1,4 +1,5 @@
 export interface IFormItem {
+  filed: string
   type: string
   label: string
   rules?: any[]

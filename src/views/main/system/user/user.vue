@@ -1,21 +1,19 @@
 <template>
   <div class="user">
-    <div class="serach">
-      <hb-form v-bind="formConfig" />
-    </div>
+    <page-search :formConfig="formConfig" />
     <div class="content"></div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import HbForm, { IFormItem, Iform } from '@/base-ui/form'
+import PageSearch from '@/components/page-search'
 import { formConfig } from './config/serach.config'
 
 export default defineComponent({
   name: 'user',
   components: {
-    HbForm
+    PageSearch
   },
   setup() {
     // const formItems: IFormItem[] = [
@@ -54,7 +52,6 @@ export default defineComponent({
     //   itemLayout: '10px 40px',
     //   formItems
     // }
-
     return {
       formConfig
     }
@@ -62,4 +59,4 @@ export default defineComponent({
 })
 </script>
 
-<style scoped></style>
+<style scoped lang="less"></style>
