@@ -7,24 +7,84 @@ const systemModule: Module<ISystemState, IRootState> = {
   namespaced: true,
   state() {
     return {
-      userList: [],
-      userCount: 0
+      usersList: [],
+      usersCount: 0,
+      roleList: [],
+      roleCount: 0,
+      goodsList: [],
+      goodsCount: 0,
+      menuList: [],
+      menuCount: 0
     }
   },
   mutations: {
-    changeUserList(state, userList: any[]) {
-      state.userList = userList
+    changeUsersList(state, usersList: any[]) {
+      state.usersList = usersList
     },
-    changeUserCount(state, userCount: number) {
-      state.userCount = userCount
+    changeUsersCount(state, usersCount: number) {
+      state.usersCount = usersCount
+    },
+    changeRoleList(state, list: any[]) {
+      state.roleList = list
+    },
+    changeRoleCount(state, count: number) {
+      state.roleCount = count
+    },
+    changeGoodsList(state, list: any[]) {
+      state.goodsList = list
+    },
+    changeGoodsCount(state, count: number) {
+      state.goodsCount = count
+    },
+    changeMenuList(state, list: any[]) {
+      state.menuList = list
+    },
+    changeMenuCount(state, count: number) {
+      state.menuCount = count
+    }
+  },
+  getters: {
+    pageListData(state) {
+      return (pageName: string) => {
+        return (state as any)[`${pageName}List`]
+        // switch (pageName) {
+        //   case 'users':
+        //     return state.usersList
+        //     break
+        //   case 'role':
+        //     return state.roleList
+        //     break
+        // }
+        return
+      }
+    },
+    pageListCount(state) {
+      return (pageName: string) => {
+        return (state as any)[`${pageName}Count`]
+      }
     }
   },
   actions: {
     async getPageListAction({ commit }, payload: any) {
-      const pageResult = await getPageListData(payload.pageUrl, payload.queryInfo)
+      const pageName = payload.pageName
+      const pageUrl = `/${pageName}/list`
+      const pageResult = await getPageListData(pageUrl, payload.queryInfo)
       const { list, totalCount } = pageResult.data
-      commit('changeUserList', list)
-      commit('changeUserCount', totalCount)
+
+      const changePageName = pageName.slice(0, 1).toUpperCase() + pageName.slice(1)
+      commit(`change${changePageName}List`, list)
+      commit(`change${changePageName}Count`, totalCount)
+
+      // switch (pageName) {
+      //   case 'users':
+      //     commit(`changeUserList`, list)
+      //     commit(`changeUserCount`, totalCount)
+      //     break
+      //   case 'role':
+      //     commit(`changeRoleList`, list)
+      //     commit(`changeRoleCount`, totalCount)
+      //     break
+      // }
     }
   }
 }

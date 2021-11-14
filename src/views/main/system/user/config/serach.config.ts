@@ -7,6 +7,13 @@ export const formConfig: Iform = {
   },
   formItems: [
     {
+      filed: 'id',
+      type: 'input',
+      label: 'id',
+      rules: [],
+      placeholder: '请输入id'
+    },
+    {
       filed: 'name',
       type: 'input',
       label: '用户名',
@@ -14,23 +21,29 @@ export const formConfig: Iform = {
       placeholder: '请输入用户名'
     },
     {
-      filed: 'password',
+      filed: 'realname',
       type: 'input',
-      label: '密码',
-      placeholder: '请输入密码'
+      label: '真实姓名',
+      placeholder: '请输入真实姓名'
     },
     {
-      filed: 'sport',
+      filed: 'cellphone',
+      type: 'input',
+      label: '电话号码',
+      placeholder: '请输入电话号码'
+    },
+    {
+      filed: 'enable',
       type: 'select',
-      label: '测试1',
-      placeholder: '测试1',
+      label: '用户状态',
+      placeholder: '请选择用户状态',
       options: [
-        { label: '111', value: 1 },
-        { label: '222', value: 2 }
+        { label: '启用', value: 1 },
+        { label: '禁用', value: 0 }
       ]
     },
     {
-      filed: 'createTime',
+      filed: 'createAt',
       type: 'datepicker',
       label: '创建时间',
       otherOptions: {

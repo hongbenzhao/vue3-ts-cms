@@ -102,6 +102,10 @@ export default defineComponent({
     //     // emit('update:modelValue', newValue)
     //   }
     // })
+    // 3 不使用v-model,直接绑定传进来modelValue
+    // const handleValueChange = (value: any, field: string) => {
+    //   emit('update:modelValue', { ...props.modelValue, [field]: value })
+    // }
     return {
       formData
     }

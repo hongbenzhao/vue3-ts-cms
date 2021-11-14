@@ -8,8 +8,10 @@
       <template #footer>
         <h1 class="header">
           <div class="handle-btns">
-            <el-button icon="el-icon-refresh">重置</el-button>
-            <el-button type="primary" icon="el-icon-search">搜索</el-button>
+            <el-button icon="el-icon-refresh" @click="handleResetClick">重置</el-button>
+            <el-button type="primary" icon="el-icon-search" @click="handleQueryClick"
+              >搜索</el-button
+            >
           </div>
         </h1>
       </template>
@@ -30,16 +32,28 @@ export default defineComponent({
   components: {
     HbForm
   },
-  setup() {
-    const formData = ref({
-      id: '',
-      name: '',
-      password: '',
-      sport: '',
-      createTime: ''
-    })
+  emits: ['resetBtnClick', 'queryBtnClick'],
+  setup(props, { emit }) {
+    const formItems = props.formConfig?.formItems ?? []
+    const formOriginData: any = {}
+    for (const item of formItems) {
+      formOriginData[item.filed] = ''
+    }
+    const formData = ref(formOriginData)
+    const handleResetClick = () => {
+      for (const key in formOriginData) {
+        formData.value[`${key}`] = formOriginData[`${key}`]
+      }
+      emit('resetBtnClick')
+    }
+    const handleQueryClick = () => {
+      emit('queryBtnClick', formData.value)
+    }
+
     return {
-      formData
+      formData,
+      handleResetClick,
+      handleQueryClick
     }
   }
 })

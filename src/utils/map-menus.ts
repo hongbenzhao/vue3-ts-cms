@@ -57,5 +57,22 @@ export function pathMapBreadcrumbs(userMenus: any[], currentPath: string) {
   return breadcrumbs
 }
 
+// 根据菜单递归获取所有按钮权限
+export function mapMenusToPermission(userMenus: any[]) {
+  const permissions: string[] = []
+  const _recurseGetPermission = (menus: any[]) => {
+    for (const menu of menus) {
+      if (menu.type === 1 || menu.type === 2) {
+        _recurseGetPermission(menu.children ?? [])
+      } else if (menu.type === 3) {
+        //按钮权限都是放在 3级菜单里
+        permissions.push(menu.permission)
+      }
+    }
+  }
+  _recurseGetPermission(userMenus)
+  return permissions
+}
+
 // 导出匹配到二级菜单的第一个菜单项 用户手动输入url为/main跳转到该菜单项
 export { firstMenu }

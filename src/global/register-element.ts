@@ -29,7 +29,9 @@ import {
   ElBreadcrumb,
   ElBreadcrumbItem,
   ElTable,
-  ElTableColumn
+  ElTableColumn,
+  ElPagination,
+  ElImage
 } from 'element-plus'
 const components = [
   ElButton,
@@ -60,7 +62,9 @@ const components = [
   ElBreadcrumb,
   ElBreadcrumbItem,
   ElTable,
-  ElTableColumn
+  ElTableColumn,
+  ElPagination,
+  ElImage
 ]
 export default function (app: App): void {
   for (const component of components) {
