@@ -7,11 +7,17 @@
       <el-row>
         <template v-for="item in formItems" :key="item.label">
           <el-col v-bind="colLayout">
-            <el-form-item :label="item.label" :rules="item.rules" :style="itemLayout">
-              <template v-if="item.type === 'input'">
+            <el-form-item
+              v-if="!item.isHidden"
+              :label="item.label"
+              :rules="item.rules"
+              :style="itemLayout"
+            >
+              <template v-if="item.type === 'input' || item.type === 'password'">
                 <el-input
                   v-model="formData[`${item.filed}`]"
                   :placeholder="item.placeholder"
+                  :show-password="item.type === 'password'"
                 ></el-input>
               </template>
               <template v-else-if="item.type === 'select'">

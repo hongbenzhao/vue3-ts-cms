@@ -4,13 +4,6 @@ export const formConfig: Iform = {
   labelWidth: '120px',
   formItems: [
     {
-      filed: 'id',
-      type: 'input',
-      label: 'id',
-      rules: [],
-      placeholder: '请输入id'
-    },
-    {
       filed: 'name',
       type: 'input',
       label: '角色名称',

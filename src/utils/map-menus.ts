@@ -73,6 +73,21 @@ export function mapMenusToPermission(userMenus: any[]) {
   _recurseGetPermission(userMenus)
   return permissions
 }
+// 获取菜单的叶子节点
+export function menuMapLeafKeys(menuList: any[]) {
+  const leafKeys: number[] = []
+  const _recurseGetLeaf = (menuList: any[]) => {
+    for (const menu of menuList) {
+      if (menu.children) {
+        _recurseGetLeaf(menu.children)
+      } else {
+        leafKeys.push(menu.id)
+      }
+    }
+  }
+  _recurseGetLeaf(menuList)
+  return leafKeys
+}
 
 // 导出匹配到二级菜单的第一个菜单项 用户手动输入url为/main跳转到该菜单项
 export { firstMenu }

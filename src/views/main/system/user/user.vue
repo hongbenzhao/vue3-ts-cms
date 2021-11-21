@@ -12,12 +12,17 @@
       @newBtnClick="handleNewData"
       @editBtnClick="handleEditData"
     ></page-content>
-    <page-modal ref="pageModalRef" :modalConfig="modalConfig"></page-modal>
+    <page-modal
+      :defaultInfo="defaultInfo"
+      pageName="users"
+      ref="pageModalRef"
+      :modalConfig="modalConfigRef"
+    ></page-modal>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import PageSearch from '@/components/page-search'
 import PageContent from '@/components/page-content'
 import PageModal from '@/components/page-modal'
@@ -25,6 +30,8 @@ import { formConfig } from './config/serach.config'
 import { contentTableConfig } from './config/content.config'
 import { modalConfig } from './config/modal.config'
 import { usePageSerach } from '@/hooks/usePageSerach'
+import { usePageModal } from '@/hooks/usePageModal'
+import { useStore } from '@/store'
 
 export default defineComponent({
   name: 'users',
@@ -70,18 +77,36 @@ export default defineComponent({
     //   itemLayout: '10px 40px',
     //   formItems
     // }
+
+    const newCallback = () => {
+      const passwordItem = modalConfig.formItems.find((item) => item.filed === 'password')
+      passwordItem!.isHidden = false
+    }
+    // 页面自己特有的逻辑 部分formItems不显示
+    const editCallback = () => {
+      const passwordItem = modalConfig.formItems.find((item) => item.filed === 'password')
+      passwordItem!.isHidden = true
+    }
+
+    const store = useStore()
+    // 动态向配置添加部门和角色列表需通过计算属性，副作用来实现 vuex异步请求获取的数据
+    const modalConfigRef = computed(() => {
+      const departmentItem = modalConfig.formItems.find((item) => item.filed === 'departmentId')
+      departmentItem!.options = store.state.entireDepartment.map((item) => {
+        return { label: item.name, value: item.id }
+      })
+      const roleItem = modalConfig.formItems.find((item) => item.filed === 'roleId')
+      roleItem!.options = store.state.entireRole.map((item) => {
+        return { label: item.name, value: item.id }
+      })
+      return modalConfig
+    })
+
     const [pageContentRef, handleResetClick, handleQueryClick] = usePageSerach()
-    const pageModalRef = ref<InstanceType<typeof PageModal>>()
-    const handleNewData = () => {
-      if (pageModalRef.value) {
-        pageModalRef.value.dialogVisible = true
-      }
-    }
-    const handleEditData = (item: any) => {
-      if (pageModalRef.value) {
-        pageModalRef.value.dialogVisible = true
-      }
-    }
+    const [pageModalRef, defaultInfo, handleNewData, handleEditData] = usePageModal(
+      newCallback,
+      editCallback
+    )
 
     return {
       pageContentRef,
@@ -89,10 +114,11 @@ export default defineComponent({
       contentTableConfig,
       handleResetClick,
       handleQueryClick,
-      modalConfig,
+      modalConfigRef,
       handleNewData,
       handleEditData,
-      pageModalRef
+      pageModalRef,
+      defaultInfo
     }
   }
 })

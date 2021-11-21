@@ -2,21 +2,55 @@ import { createStore, Store, useStore as useVuexStore } from 'vuex'
 import { IRootState, IStoreType } from './types'
 import login from './login/login'
 import system from './main/system/system'
+import { getPageListData } from '@/service/main/system/system'
 
 const store = createStore<IRootState>({
   state: () => {
     return {
-      name: 123
+      name: '123',
+      entireDepartment: [], //部门列表
+      entireRole: [], //角色列表
+      entireMenu: [] //菜单列表
     }
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    changeEntireDepartment(state, list) {
+      state.entireDepartment = list
+    },
+    changeEntireRole(state, list) {
+      state.entireRole = list
+    },
+    changeEntireMenu(state, list) {
+      state.entireMenu = list
+    }
+  },
+  actions: {
+    async getInitialDataAction({ commit }) {
+      // 请求所有部门和角色数据
+      const departmentResult = await getPageListData('/department/list', {
+        offset: 0,
+        size: 1000
+      })
+      const { list: departmentList } = departmentResult.data
+      const roleResult = await getPageListData('/role/list', {
+        offset: 0,
+        size: 1000
+      })
+      const { list: roleList } = roleResult.data
+      const menuResult = await getPageListData('/menu/list', {})
+      const { list: menuList } = menuResult.data
+
+      commit('changeEntireDepartment', departmentList)
+      commit('changeEntireRole', roleList)
+      commit('changeEntireMenu', menuList)
+    }
+  },
   modules: {
     login,
     system
   }
 })
-
+// 刷新 组件创建 设置登录/菜单/部门角色
 export function setupStore() {
   store.dispatch('login/loadLocalLogin')
 }
