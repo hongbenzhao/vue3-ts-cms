@@ -107,7 +107,7 @@ export default defineComponent({
       background-color: #0c2135 !important;
     }
   }
-  ::v-deep .el-submenu__title {
+  :deep .el-submenu__title {
     background-color: #001529 !important;
   }
   // hover 高亮

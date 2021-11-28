@@ -35,3 +35,6 @@ npm install xxx -- force
 npx -p npm@6 npm i --legacy-peer-deps
 
 npm i normalize.css
+
+生成tree目录结构
+tree -I "node_modules|dist"

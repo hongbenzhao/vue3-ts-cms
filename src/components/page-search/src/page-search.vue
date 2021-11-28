@@ -3,7 +3,7 @@
     <!-- v-model="formData" 和:modelValue="formData" 效果相同 -->
     <hb-form v-bind="formConfig" v-model="formData">
       <template #header>
-        <h1 class="header">高级检索</h1>
+        <h1 class="header"></h1>
       </template>
       <template #footer>
         <h1 class="header">

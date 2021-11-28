@@ -8,7 +8,7 @@
     >
       <template #headerHandler>
         <el-button v-if="isCreate" type="primary" size="medium" @click="handleNewClick">
-          新建用户
+          新建数据
         </el-button>
       </template>
       <template #status="scope">
