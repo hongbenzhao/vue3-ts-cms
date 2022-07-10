@@ -3,7 +3,7 @@
     <template v-for="(item, index) in textArrs" :key="index">
       <div class="item">
         <span class="title">{{ item.title }} :</span>
-        <el-link type="primary">{{ item.desp }}</el-link>
+        <el-link type="primary" href="#/main/analysis/overview">{{ item.desp }}</el-link>
       </div>
     </template>
   </div>

@@ -48,16 +48,16 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 export default defineComponent({
   props: {
     title: {
       type: String,
-      default: ''
+      default: '表格数据'
     },
     listData: {
-      type: Array,
-      required: true
+      type: Array as PropType<any[]>,
+      default: () => []
     },
     listCount: {
       type: Number,

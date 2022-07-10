@@ -5,6 +5,9 @@ export default function registerProperties(app: App) {
   app.config.globalProperties.$filters = {
     formatTime(value: string) {
       return formatUtcString(value)
+    },
+    showStatus(enable: boolean) {
+      return enable ? '启用' : '禁用'
     }
   }
 }

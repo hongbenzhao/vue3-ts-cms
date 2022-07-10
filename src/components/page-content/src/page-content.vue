@@ -44,6 +44,7 @@
           </el-button>
         </div>
       </template>
+      <!-- 除了我自己提前封装好的部分插槽，剩下的由用户自己定义，前提要先预留用户插槽 -->
       <template v-for="item in otherPropSlot" :key="item.prop" #[item.slotName]="scope">
         <template v-if="item.slotName">
           <slot :name="item.slotName" :row="scope.row"></slot>
