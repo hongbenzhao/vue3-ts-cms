@@ -24,7 +24,9 @@ export default defineComponent({
   setup(props) {
     const highlightedCode = ref('')
     watchEffect(() => {
-      highlightedCode.value = hljs.highlight(props.code, { language: props.language }).value
+      highlightedCode.value = hljs.highlight(props.code, {
+        language: props.language
+      }).value
     })
     return {
       highlightedCode

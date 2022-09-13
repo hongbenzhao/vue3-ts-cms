@@ -48,7 +48,7 @@ export default defineComponent({
     }
     const update = (number: number) => {
       if (!instance.value) return
-      instance?.value.update(number)
+      instance.value?.update(number)
     }
     return {
       counterRef
